@@ -1,0 +1,360 @@
+[
+  {
+    "video_id": "bgr6D9YuZfQ",
+    "url": "https://www.youtube.com/watch?v=bgr6D9YuZfQ&t=1s",
+    "title": "Video bgr6D",
+    "added_date": "2026-05-13T08:59:15.517881",
+    "analysis": {
+      "positive": 19.73,
+      "negative": 34.69,
+      "neutral": 45.58,
+      "positive_count": 29,
+      "negative_count": 51,
+      "neutral_count": 67,
+      "total_comments": 147,
+      "positive_words": [
+        {
+          "word": "kliyengan",
+          "weight": 1
+        },
+        {
+          "word": "taraf",
+          "weight": 3
+        },
+        {
+          "word": "pundi-pundi",
+          "weight": 2
+        },
+        {
+          "word": "singgung",
+          "weight": 1
+        },
+        {
+          "word": "mewisuda",
+          "weight": 3
+        },
+        {
+          "word": "keurusan",
+          "weight": 4
+        },
+        {
+          "word": "menumpang tinggal",
+          "weight": 1
+        },
+        {
+          "word": "protektor",
+          "weight": 3
+        },
+        {
+          "word": "hati",
+          "weight": 2
+        },
+        {
+          "word": "timbalan",
+          "weight": 4
+        },
+        {
+          "word": "lapang",
+          "weight": 3
+        },
+        {
+          "word": "buka",
+          "weight": 3
+        },
+        {
+          "word": "astagfirullah",
+          "weight": 3
+        },
+        {
+          "word": "wafat",
+          "weight": 1
+        },
+        {
+          "word": "kedoyanan",
+          "weight": 3
+        },
+        {
+          "word": "nikmati",
+          "weight": 3
+        },
+        {
+          "word": "penanganan",
+          "weight": 1
+        },
+        {
+          "word": "berbobot",
+          "weight": 2
+        },
+        {
+          "word": "batasan",
+          "weight": 3
+        },
+        {
+          "word": "permukiman",
+          "weight": 3
+        }
+      ],
+      "negative_words": [
+        {
+          "word": "nista",
+          "weight": -5
+        },
+        {
+          "word": "kelesuan",
+          "weight": -5
+        },
+        {
+          "word": "busuk",
+          "weight": -5
+        },
+        {
+          "word": "berlebih-lebih",
+          "weight": -4
+        },
+        {
+          "word": "pinggir",
+          "weight": -4
+        },
+        {
+          "word": "berlipat",
+          "weight": -3
+        },
+        {
+          "word": "terbangai",
+          "weight": -3
+        },
+        {
+          "word": "roh jahat",
+          "weight": -4
+        },
+        {
+          "word": "mangut",
+          "weight": -4
+        },
+        {
+          "word": "kemban",
+          "weight": -5
+        },
+        {
+          "word": "metode",
+          "weight": -5
+        },
+        {
+          "word": "mendapati",
+          "weight": -4
+        },
+        {
+          "word": "mati pucuk",
+          "weight": -5
+        },
+        {
+          "word": "merampus",
+          "weight": -5
+        },
+        {
+          "word": "cerewet",
+          "weight": -5
+        },
+        {
+          "word": "berhujah",
+          "weight": -4
+        },
+        {
+          "word": "berdaulat",
+          "weight": -3
+        },
+        {
+          "word": "sensi",
+          "weight": -4
+        },
+        {
+          "word": "nis-",
+          "weight": -3
+        },
+        {
+          "word": "mengasuh",
+          "weight": -2
+        }
+      ]
+    }
+  },
+  {
+    "video_id": "oMh5plkfoLw",
+    "url": "https://www.youtube.com/watch?v=oMh5plkfoLw",
+    "title": "Video oMh5p",
+    "added_date": "2026-05-13T09:01:02.302194",
+    "analysis": {
+      "positive": 56.92,
+      "negative": 23.85,
+      "neutral": 19.23,
+      "positive_count": 148,
+      "negative_count": 62,
+      "neutral_count": 50,
+      "total_comments": 260,
+      "positive_words": [
+        {
+          "word": "keseimbangan",
+          "weight": 4
+        },
+        {
+          "word": "menyidangkan",
+          "weight": 1
+        },
+        {
+          "word": "khas",
+          "weight": 4
+        },
+        {
+          "word": "adiluhung",
+          "weight": 3
+        },
+        {
+          "word": "puja",
+          "weight": 4
+        },
+        {
+          "word": "pere",
+          "weight": 3
+        },
+        {
+          "word": "jaring",
+          "weight": 3
+        },
+        {
+          "word": "artian",
+          "weight": 3
+        },
+        {
+          "word": "vak",
+          "weight": 3
+        },
+        {
+          "word": "menganut",
+          "weight": 4
+        },
+        {
+          "word": "hujan ringan",
+          "weight": 2
+        },
+        {
+          "word": "kenang-kenangan",
+          "weight": 3
+        },
+        {
+          "word": "temennya",
+          "weight": 1
+        },
+        {
+          "word": "menggambari",
+          "weight": 3
+        },
+        {
+          "word": "pembahasan",
+          "weight": 1
+        },
+        {
+          "word": "lapor",
+          "weight": 2
+        },
+        {
+          "word": "kohesi",
+          "weight": 4
+        },
+        {
+          "word": "bertukar akal",
+          "weight": 1
+        },
+        {
+          "word": "ulasan",
+          "weight": 3
+        },
+        {
+          "word": "talen",
+          "weight": 2
+        }
+      ],
+      "negative_words": [
+        {
+          "word": "kesusupan",
+          "weight": -2
+        },
+        {
+          "word": "insentif",
+          "weight": -3
+        },
+        {
+          "word": "jajaran genjang",
+          "weight": -4
+        },
+        {
+          "word": "membendung",
+          "weight": -3
+        },
+        {
+          "word": "cekuh",
+          "weight": -3
+        },
+        {
+          "word": "penganggur",
+          "weight": -4
+        },
+        {
+          "word": "rongseng",
+          "weight": -4
+        },
+        {
+          "word": "ruang",
+          "weight": -3
+        },
+        {
+          "word": "inkarnasi",
+          "weight": -1
+        },
+        {
+          "word": "menebat",
+          "weight": -3
+        },
+        {
+          "word": "rapat",
+          "weight": -3
+        },
+        {
+          "word": "paksa",
+          "weight": -4
+        },
+        {
+          "word": "menjahatkan",
+          "weight": -4
+        },
+        {
+          "word": "bersengaja",
+          "weight": -2
+        },
+        {
+          "word": "daif",
+          "weight": -3
+        },
+        {
+          "word": "cembung",
+          "weight": -3
+        },
+        {
+          "word": "lihai",
+          "weight": -4
+        },
+        {
+          "word": "lenyap",
+          "weight": -5
+        },
+        {
+          "word": "kanji",
+          "weight": -3
+        },
+        {
+          "word": "tercemas",
+          "weight": -3
+        }
+      ]
+    }
+  }
+]

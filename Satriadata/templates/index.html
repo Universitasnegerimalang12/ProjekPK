@@ -1,0 +1,365 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sentiment Analysis Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='css/style.css') }}"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+      rel="stylesheet"
+    />
+    <script>
+      // CSS Loader dengan fallback paths untuk memastikan CSS selalu termuat
+      // Ini memungkinkan file bekerja baik dengan Flask maupun Live Server
+      (function () {
+        const cssPaths = [
+          "/static/css/style.css", // Flask production path
+          "../static/css/style.css", // Relative path untuk Live Server
+          "./static/css/style.css", // Alternative path
+        ];
+
+        function loadCSSWithFallback(pathIndex = 0) {
+          if (pathIndex >= cssPaths.length) {
+            console.warn(
+              "⚠️  CSS tidak bisa dimuat. Pastikan menjalankan: python app.py",
+            );
+            return;
+          }
+
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = cssPaths[pathIndex];
+
+          // Jika gagal, coba path berikutnya
+          link.onerror = function () {
+            console.log(
+              "CSS path failed: " + cssPaths[pathIndex] + ", trying next...",
+            );
+            loadCSSWithFallback(pathIndex + 1);
+          };
+
+          link.onload = function () {
+            console.log("✓ CSS loaded from: " + cssPaths[pathIndex]);
+          };
+
+          document.head.appendChild(link);
+        }
+
+        // Cek apakah Flask syntax sudah berhasil load CSS
+        setTimeout(function () {
+          try {
+            const cssLoaded = Array.from(document.styleSheets).some(
+              (sheet) => sheet.href && sheet.href.includes("style.css"),
+            );
+
+            if (!cssLoaded) {
+              console.log("Flask CSS tidak termuat, menggunakan fallback...");
+              loadCSSWithFallback();
+            } else {
+              console.log("✓ CSS sudah dimuat dengan Flask syntax");
+            }
+          } catch (e) {
+            console.log("Menggunakan CSS fallback loader...");
+            loadCSSWithFallback();
+          }
+        }, 100);
+      })();
+    </script>
+  </head>
+  <body>
+    <!-- Opening Section with Video Background -->
+    <section class="opening-section">
+      <video class="video-background" autoplay muted loop>
+        <source
+          src="{{ url_for('static', filename='VideoUm.mp4') }}"
+          type="video/mp4"
+        />
+        Video tidak bisa dimainkan
+      </video>
+      <div class="video-overlay"></div>
+      <div class="opening-content">
+        <h2>Selamat Datang Di Website Kami</h2>
+        <h1>Dataverse.co</h1>
+        <h3>Website Ini Di Buat Untuk Menyelasikan Tugas Projek Mata Kuliah</h3>
+        <h3>Pemrogroman Komputer Kelompok 1</h3>
+      </div>
+    </section>
+
+    <!-- Header -->
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <h1><i class="fas fa-chart-bar"></i> Dataverse.co</h1>
+          <p>
+            Website analisis sentimen berbasis komentar pada platform YouTube
+            dengan antarmuka modern
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Team Members Section -->
+    <section class="team-section">
+      <div class="team-header">
+        <h2>Profil Developer</h2>
+        <p>Berikut Merupakan 3 Profil Dari Pembuat Website Dataverse.co</p>
+      </div>
+      <div class="container">
+        <div class="team-grid">
+          <!-- Member 1 -->
+          <div class="member-card" onclick="openMemberModal(1)">
+            <div class="member-image-wrapper">
+              <img
+                src="{{ url_for('static', filename='members/Fateh.jpeg') }}"
+                alt="Member 1"
+                class="member-image"
+              />
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">Muhammad Fathi Farhad</h3>
+              <p class="member-role">Developer</p>
+              <p class="member-click">Klik untuk detail</p>
+            </div>
+          </div>
+
+          <!-- Member 2 -->
+          <div class="member-card" onclick="openMemberModal(2)">
+            <div class="member-image-wrapper">
+              <img
+                src="{{ url_for('static', filename='members/Pasha.jpeg') }}"
+                alt="Member 2"
+                class="member-image"
+              />
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">Muhammad Pasha Febrio</h3>
+              <p class="member-role">Developer</p>
+              <p class="member-click">Klik untuk detail</p>
+            </div>
+          </div>
+
+          <!-- Member 3 -->
+          <div class="member-card" onclick="openMemberModal(3)">
+            <div class="member-image-wrapper">
+              <img
+                src="{{ url_for('static', filename='members/Nuha.jpeg') }}"
+                alt="Member 3"
+                class="member-image"
+              />
+            </div>
+            <div class="member-info">
+              <h3 class="member-name">Naqiyah Nuha</h3>
+              <p class="member-role">Developer</p>
+              <p class="member-click">Klik untuk detail</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Member Modal -->
+    <div class="member-modal" id="memberModal">
+      <div class="modal-content">
+        <span class="modal-close" onclick="closeMemberModal()">&times;</span>
+        <div class="modal-body">
+          <img id="modalImage" src="" alt="Member" class="modal-image" />
+          <div class="modal-info">
+            <h2 id="modalName"></h2>
+            <p id="modalRole"></p>
+            <p id="modalDescription"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <main class="container">
+      <!-- YouTube Analyzer Section -->
+      <section class="youtube-analyzer-section">
+        <div class="analyzer-header">
+          <h2><i class="fab fa-youtube"></i> YouTube Link Analyzer</h2>
+          <p>Masukkan link YouTube untuk menganalisis sentimen komentar</p>
+        </div>
+
+        <div class="youtube-input-container">
+          <div class="youtube-input-box">
+            <i class="fab fa-youtube"></i>
+            <input
+              type="url"
+              id="youtubeUrl"
+              placeholder="Paste link YouTube (misal: https://www.youtube.com/watch?v=...)"
+              class="youtube-url-input"
+            />
+            <button id="analyzeBtn" class="analyze-button">
+              <i class="fas fa-play-circle"></i> Analisis
+            </button>
+          </div>
+          <div
+            id="youtubeError"
+            class="error-message"
+            style="display: none"
+          ></div>
+          <div
+            id="youtubeLoading"
+            class="loading-indicator"
+            style="display: none"
+          >
+            <i class="fas fa-spinner fa-spin"></i> Menganalisis data YouTube...
+          </div>
+        </div>
+
+        <!-- YouTube Links List -->
+        <div class="youtube-links-container">
+          <h3>Daftar Link YouTube yang Dianalisis</h3>
+          <div id="youtubeList" class="youtube-list">
+            <div class="no-links">Belum ada link yang dianalisis</div>
+          </div>
+        </div>
+
+        <!-- YouTube Analysis Results -->
+        <div id="youtubeResults" class="youtube-results" style="display: none">
+          <div class="results-header">
+            <h3>Hasil Analisis</h3>
+            <button id="closeResults" class="close-btn">×</button>
+          </div>
+          <div class="youtube-result-content">
+            <div class="result-info">
+              <h4 id="resultTitle">Video Title</h4>
+              <a id="resultUrl" href="#" target="_blank" class="result-url"
+                >Buka video</a
+              >
+            </div>
+            <div class="result-stats">
+              <div class="result-stat">
+                <span class="stat-label">Sentimen Positif</span>
+                <span id="resultPositive" class="stat-value positive">0%</span>
+              </div>
+              <div class="result-stat">
+                <span class="stat-label">Sentimen Negatif</span>
+                <span id="resultNegative" class="stat-value negative">0%</span>
+              </div>
+              <div class="result-stat">
+                <span class="stat-label">Netral</span>
+                <span id="resultNeutral" class="stat-value neutral">0%</span>
+              </div>
+            </div>
+            <div id="resultDetails" class="result-details"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search Section -->
+      <section class="search-section">
+        <div class="search-box">
+          <i class="fas fa-search"></i>
+          <input
+            type="text"
+            id="searchInput"
+            placeholder="Cari kata sentiment..."
+          />
+        </div>
+      </section>
+
+      <!-- Stats Section -->
+      <section class="stats-section">
+        <div class="stat-card positive-stat">
+          <div class="stat-icon"><i class="fas fa-thumbs-up"></i></div>
+          <div class="stat-content">
+            <h3>Kata Positif</h3>
+            <p class="stat-number" id="statPositiveCount">
+              {{ stats.total_positive }}
+            </p>
+            <small id="statPositiveWeight"
+              >Avg Weight: {{ "%.2f"|format(stats.avg_positive_weight) }}</small
+            >
+          </div>
+        </div>
+
+        <div class="stat-card negative-stat">
+          <div class="stat-icon"><i class="fas fa-thumbs-down"></i></div>
+          <div class="stat-content">
+            <h3>Kata Negatif</h3>
+            <p class="stat-number" id="statNegativeCount">
+              {{ stats.total_negative }}
+            </p>
+            <small id="statNegativeWeight"
+              >Avg Weight: {{ "%.2f"|format(stats.avg_negative_weight) }}</small
+            >
+          </div>
+        </div>
+
+        <div class="stat-card total-stat">
+          <div class="stat-icon"><i class="fas fa-database"></i></div>
+          <div class="stat-content">
+            <h3>Total Kata</h3>
+            <p class="stat-number" id="statTotalCount">
+              {{ stats.total_words }}
+            </p>
+            <small id="statTotalLabel">Dataset Lengkap</small>
+          </div>
+        </div>
+      </section>
+
+      <!-- Data Section -->
+      <section class="data-section">
+        <div class="data-container">
+          <!-- Positive Words -->
+          <div class="data-card positive-card">
+            <div class="card-header">
+              <h2><i class="fas fa-smile"></i> Kata-Kata Positif</h2>
+              <span class="badge positive-badge">Top 20</span>
+            </div>
+            <div class="words-list" id="positiveList">
+              <div class="loading">Memuat data...</div>
+            </div>
+          </div>
+
+          <!-- Negative Words -->
+          <div class="data-card negative-card">
+            <div class="card-header">
+              <h2><i class="fas fa-frown"></i> Kata-Kata Negatif</h2>
+              <span class="badge negative-badge">Top 20</span>
+            </div>
+            <div class="words-list" id="negativeList">
+              <div class="loading">Memuat data...</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Search Results Section -->
+      <section
+        class="results-section"
+        id="resultsSection"
+        style="display: none"
+      >
+        <h2>Hasil Pencarian</h2>
+        <div class="results-container">
+          <div class="results-card">
+            <h3><i class="fas fa-smile"></i> Hasil Positif</h3>
+            <div id="searchPositive" class="search-results"></div>
+          </div>
+          <div class="results-card">
+            <h3><i class="fas fa-frown"></i> Hasil Negatif</h3>
+            <div id="searchNegative" class="search-results"></div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container">
+        <p>
+          &copy; 2026 Sentiment Analysis Dashboard. Data dari YouTube Comments.
+        </p>
+      </div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+  </body>
+</html>
